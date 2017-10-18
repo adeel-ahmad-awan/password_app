@@ -2,16 +2,19 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
+
+<%= form_tag passwords_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:link) %></th>
-      <th><%= model_class.human_attribute_name(:username) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:password) %></th>
-      <th><%= model_class.human_attribute_name(:notes) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -19,13 +22,8 @@
   <tbody>
     <% @passwords.each do |password| %>
       <tr>
-        <td><%= link_to password.id, password_path(password) %></td>
         <td><%= password.name %></td>
         <td><%= password.link %></td>
-        <td><%= password.username %></td>
-        <td><%= password.email %></td>
-        <td><%= password.password %></td>
-        <td><%= password.notes %></td>
         <td><%=l password.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
