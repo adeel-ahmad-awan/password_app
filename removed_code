@@ -1,0 +1,6 @@
+<%=f.error_span(:name) %>
+<%=f.error_span(:link) %>
+<%=f.error_span(:username) %>
+<%=f.error_span(:email) %>
+<%=f.error_span(:password) %>
+<%=f.error_span(:notes) %>
