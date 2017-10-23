@@ -1,4 +1,5 @@
 class Password < ApplicationRecord
+  belongs_to :user
 
   def self.search(search)
     if search

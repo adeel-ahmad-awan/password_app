@@ -4,7 +4,8 @@ class PasswordsController < ApplicationController
   # GET /passwords
   # GET /passwords.json
   def index
-    @passwords = Password.search(params[:search])
+    @passwords = current_user.passwords
+    # @passwords = Password.search(params[:search])
 
   end
 
@@ -26,6 +27,7 @@ class PasswordsController < ApplicationController
   # POST /passwords.json
   def create
     @password = Password.new(password_params)
+    @password.user_id = current_user.id
 
     respond_to do |format|
       if @password.save
